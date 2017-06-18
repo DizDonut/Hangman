@@ -73,23 +73,26 @@
       console.log(this.guessedLetter);
     },
 
+    compare: function(input,ranWord){
+      var count = 0;
+      for (var j = 0; j < ranWord.length; j++)
+      {
+          if(input === ranWord)
+          {
+            this.correctGuesses++;
+            count++;
+          }
+          if(input === ranWord.charAt(j))
+          {
+            dbz.answerMask[j] = input;
+            var solved = document.getElementById("word");
+            solved.innerHTML = dbz.answerMask;
+            console.log(dbz.answerMask);
+          }
+      }
+    },
   };
 
-  function compare(input,ranWord){
-      var count = 0;
-      for (var j = 0; j < wordTwo.length; j++) {
-        var currentGuess = input;
-        var check = wordTwo.charAt(1);
-        if(currentGuess === check){
-          dbz.correctGuesses++;
-          count++;
-        }
-      }
-
-      if (count === 0) {
-        dbz.incorrectGuesses++;
-      }
-  }
 
   var wordTwo = "";
 
@@ -97,19 +100,24 @@
 
       wordTwo = dbz.randomCharacter();
 
-      document.getElementById("button").onclick = function()
+      document.getElementById("generate-button").onclick = function()
         {
           var masked = dbz.answerMask;
-          var solved = document.getElementById("word");
-          solved.innerHTML = masked.join(" ");
+          var unSolved = document.getElementById("word");
+          unSolved.innerHTML = masked.join(" ");
         }
-      };
 
-  document.onkeyup = function(event){
+      document.getElementById("clear-button").onclick = function ()
+        {
+            clear();
+        }
 
-      var userInput = event.key.toLowerCase();
-      dbz.guess(userInput);
-      compare(userInput,wordTwo);
+        document.onkeyup = function(event){
+
+          var userInput = event.key.toLowerCase();
+          dbz.guess(userInput);
+          dbz.compare(userInput,wordTwo);
+        };
     };
 
   function clear(){

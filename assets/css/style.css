@@ -14,3 +14,19 @@ img{
 .panel-heading{
   text-align: center;
 }
+
+.panel-body{
+  word-break: break-all;
+  font-family:
+}
+
+@font-face {
+  font-family: 'SaiyanSans';
+  src: url("assets/css/SaiyanFont/SaiyanSans.eot");
+  src: local('SaiyanSans'), url("SaiyanFont/SaiyanSans.woff") format('woff'), url("SaiyanFont/SaiyanSans.ttf") format('truetype');
+}
+
+.dbz-font {
+	font-family: 'SaiyanSans' !important;
+  font-size: 200%;
+}

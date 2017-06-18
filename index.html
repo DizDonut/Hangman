@@ -16,11 +16,11 @@
         <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Dragon Ball Z Hangman!</h3>
+            <h3 class="dbz-font">Dragon Ball Z Hangman!</h3>
           </div>
           <div class="panel-body">
             <div class="text-center">
-              <button id="button" class="btn btn-success btn-lg button"><span class="glyphicon glyphicon-star"></span>Generate Your Word!</button>
+              <button id="generate-button" class="btn btn-success btn-lg button dbz-font"><span class="glyphicon glyphicon-star"></span>Generate Your Word!</button>
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Guess This Word!</h3>
+              <h3 class="dbz-font">Guess This Word!</h3>
             </div>
             <div class="panel-body">
               <div class="text-center">
@@ -40,26 +40,50 @@
         <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Your Guesses!</h3>
+              <h3 class="dbz-font">Your Guesses!</h3>
             </div>
             <div class="panel-body">
               <div class="row">
               <div class="col-md-6">
-                <div class="text-center">
-                  <div id="letter"></div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <div class="panel-body">
+                    <div class="text-center">
+                      <div id="letter" class="dbz-font"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div><!-- sub column for letter guesses -->
               <div class="col-md-6">
-                <div class="text-center">
-                  <div id="guess-count"></div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <div class="panel-body">
+                    <div class="text-center">
+                      <div id="guess-count" class="dbz-font"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+              </div><!-- sub column for guess count -->
+            </div><!-- sub row for Your Guesses sub columns -->
+          </div><!-- panel body for Your Guesses -->
+          </div><!-- panel for Your Guesses -->
+        </div><!-- End parent column for main container -->
+      </div><!-- parent row -->
+      <div class="row">
+        <div class="col md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-body">
+                <div class="text-center">
+                  <button id="clear-button" class="btn btn-danger btn-lg button dbz-font"><span class="glyphicon glyphicon-star-empty"></span>Clear</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div id="guesses"></div>
+    </div><!-- containter -->
   </body>
 </html>

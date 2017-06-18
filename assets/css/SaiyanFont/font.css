@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'SaiyanSans';
+	src: url('./SaiyanSans.eot');
+	src: local('SaiyanSans'), url('./SaiyanFont.woff') format('woff'), url('./SaiyanSans.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_911">Text with this font applied</p> */
+.fontsforweb_fontid_911 {
+	font-family: 'SaiyanSans' !important;
+}
+
+/* Font downloaded from FontsForWeb.com */
