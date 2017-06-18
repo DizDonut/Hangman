@@ -1,0 +1,16 @@
+img{
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  opacity: 0.5;
+}
+
+.jumbotron img{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.panel-heading{
+  text-align: center;
+}

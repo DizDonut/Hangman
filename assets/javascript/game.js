@@ -30,7 +30,6 @@
                 "Yajirobe",
                 "Kami",
                 "Bobbidi",
-                "Captain Ginyu",
                 "Nappa",
                 "Shenron",
                 "Cooler"],
@@ -38,36 +37,58 @@
     totalGuesses: 0,
     totalWins: 0,
     totalLosses: 0,
+    incorrectGuesses: 0,
+    guessedLetter: [],
+    answerMask: [],
+    validInput: true,
+    dupInput: false,
 
     randomCharacter: function(){
         var rand = this.characters[Math.floor(Math.random() * this.characters.length)];
         console.log(rand);
-        rand = rand.replace(/\s+/g,"_");
+        for (var i = 0; i < rand.length; i++) {
+        this.answerMask[i] = "_";
+        }
         return rand;
     },
 
-    showLetter: function(letter){
-      console.log(letter);
-      var input = document.getElementById("letter");
-      input.innerHTML = letter;
-
+    guess: function(arg){
+      var charCode = arg.charCodeAt(0);
+      if(charCode <= 122 && charCode >= 97)
+      {
+        this.validInput = true;
+        if(this.guessedLetter.indexOf(arg) === -1){
+          var choice = this.guessedLetter.push(arg);
+          choice = document.getElementById("letter");
+          choice.innerHTML = this.guessedLetter;
+          this.totalGuesses++;
+          var guess = document.getElementById("guess-count");
+          guess.innerHTML = this.totalGuesses;
+        }
+      }
+      else {
+        this.validInput = false;
+        alert("Please choose a valid letter [A-Z]");
+      }
+      console.log(this.guessedLetter);
     },
 
   };
 
   function compare(input,ranWord){
+      var count = 0;
+      for (var j = 0; j < wordTwo.length; j++) {
+        var currentGuess = input;
+        var check = wordTwo.charAt(1);
+        if(currentGuess === check){
+          dbz.correctGuesses++;
+          count++;
+        }
+      }
 
-    for (var i = 0; i < ranWord.length; i++) {
-      if(input === ranWord.charAt(i))
-      {
-        var correct = console.log("Correct!");
-        return correct;
+      if (count === 0) {
+        dbz.incorrectGuesses++;
       }
-      else{
-        var incorrect = console.log("Incorrect!");
-        return incorrect;
-      }
-    }
   }
 
   var wordTwo = "";
@@ -75,16 +96,23 @@
   window.onload = function(){
 
       wordTwo = dbz.randomCharacter();
-      wordTwo = wordTwo.toLowerCase();
+
       document.getElementById("button").onclick = function()
         {
-          document.getElementById("word").innerHTML = wordTwo;
+          var masked = dbz.answerMask;
+          var solved = document.getElementById("word");
+          solved.innerHTML = masked.join(" ");
         }
       };
 
   document.onkeyup = function(event){
 
       var userInput = event.key.toLowerCase();
-      dbz.showLetter(userInput);
+      dbz.guess(userInput);
       compare(userInput,wordTwo);
     };
+
+  function clear(){
+    wordTwo = [];
+    dbz.totalGuesses = 0;
+  }
