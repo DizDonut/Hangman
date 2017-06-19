@@ -42,17 +42,33 @@
     answerMask: [],
     validInput: true,
     dupInput: false,
+    gameStart: false,
 
     randomCharacter: function(){
-        var rand = this.characters[Math.floor(Math.random() * this.characters.length)];
+        var guess = document.getElementById("guess-count");
+        guess.innerHTML = this.maxGuesses;
+        var rand = this.characters[Math.floor(Math.random() * this.characters.length)].toLowerCase();
         console.log(rand);
-        for (var i = 0; i < rand.length; i++) {
-        this.answerMask[i] = "_";
+        for (var i = 0; i < rand.length; i++)
+        {
+          this.answerMask[i] = "_";
         }
+        this.gameStart = true;
         return rand;
     },
 
+    start: function(){
+      if(this.gameStart){
+        document.getElementById("generate-button").disabled = true;
+      }
+    },
+
+    restart: function(){
+
+    },
+
     guess: function(arg){
+
       var charCode = arg.charCodeAt(0);
       if(charCode <= 122 && charCode >= 97)
       {
@@ -62,8 +78,11 @@
           choice = document.getElementById("letter");
           choice.innerHTML = this.guessedLetter;
           this.totalGuesses++;
-          var guess = document.getElementById("guess-count");
-          guess.innerHTML = this.totalGuesses;
+          if(this.totalGuesses > this.maxGuesses)
+          {
+              alert("GAME OVER!");
+              document.onkeyup.disabled = true;
+          }
         }
       }
       else {
@@ -74,13 +93,11 @@
     },
 
     compare: function(input,ranWord){
-      var count = 0;
       for (var j = 0; j < ranWord.length; j++)
       {
           if(input === ranWord)
           {
             this.correctGuesses++;
-            count++;
           }
           if(input === ranWord.charAt(j))
           {
@@ -98,13 +115,14 @@
 
   window.onload = function(){
 
-      wordTwo = dbz.randomCharacter();
 
       document.getElementById("generate-button").onclick = function()
         {
+          wordTwo = dbz.randomCharacter();
           var masked = dbz.answerMask;
           var unSolved = document.getElementById("word");
           unSolved.innerHTML = masked.join(" ");
+          dbz.start();
         }
 
       document.getElementById("clear-button").onclick = function ()
@@ -123,4 +141,6 @@
   function clear(){
     wordTwo = [];
     dbz.totalGuesses = 0;
+    dbz.gameStart = false;
+    dbz.start();
   }
